@@ -1,5 +1,6 @@
 import { StackNavigator } from "react-navigation";
 
+import ChangePassword from "./ChangePassword";
 import FrontDoor from "./FrontDoor";
 import ForgotPassword from "./ForgotPassword";
 import Login from "./Login";
@@ -9,6 +10,7 @@ import AuthLoading from "./AuthLoading";
 export { default as AuthLoading } from "./AuthLoading";
 
 export const Route = {
+  ChangePassword: "ChangePassword",
   FrontDoor: "FrontDoor",
   ForgotPassword: "ForgotPassword",
   Login: "Login",
@@ -16,22 +18,30 @@ export const Route = {
   AuthLoading: "Connecting"
 };
 
-const AuthNavigator = StackNavigator({
-  [Route.FrontDoor]: {
-    screen: FrontDoor
+const AuthNavigator = StackNavigator(
+  {
+    [Route.ChangePassword]: {
+      screen: ChangePassword
+    },
+    [Route.FrontDoor]: {
+      screen: FrontDoor
+    },
+    [Route.ForgotPassword]: {
+      screen: ForgotPassword
+    },
+    [Route.Login]: {
+      screen: Login
+    },
+    [Route.Register]: {
+      screen: Register
+    },
+    [Route.AuthLoading]: {
+      screen: AuthLoading
+    }
   },
-  [Route.ForgotPassword]: {
-    screen: ForgotPassword
-  },
-  [Route.Login]: {
-    screen: Login
-  },
-  [Route.Register]: {
-    screen: Register
-  },
-  [Route.AuthLoading]: {
-    screen: AuthLoading
+  {
+    initialRouteName: Route.FrontDoor
   }
-});
+);
 
 export default AuthNavigator;

@@ -17,5 +17,6 @@ export const colors = {
 };
 
 export default {
-  colors
+  colors,
+  size: 16
 };

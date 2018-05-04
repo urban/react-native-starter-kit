@@ -12,10 +12,10 @@ import { PrimaryButton } from "../../../components/Buttons";
 import TextInput from "../../../components/TextInput";
 
 type Props = {
-  navigateToChangePassword: Function
+  navigateToLogin: Function
 };
 
-const ForgotPasswordScreen = ({ navigateToChangePassword }: Props) => (
+const ChangePasswordScreen = ({ navigateToLogin }: Props) => (
   <Layout>
     <KeyboardAvoidingView
       style={styles.container}
@@ -24,11 +24,20 @@ const ForgotPasswordScreen = ({ navigateToChangePassword }: Props) => (
       enabled
     >
       <View style={styles.main}>
-        <PageTitle>Forgot Password Screen</PageTitle>
-        <TextInput label="Email" placeholder="Please enter your email..." />
+        <PageTitle>Change Password Screen</PageTitle>
+        <TextInput
+          label="New Password"
+          secureTextEntry={true}
+          placeholder="Please enter your new password..."
+        />
+        <TextInput
+          label="Confirm New Password"
+          secureTextEntry={true}
+          placeholder="Please confirm your new password..."
+        />
       </View>
       <View style={styles.controls}>
-        <PrimaryButton title="Send" onPress={navigateToChangePassword} />
+        <PrimaryButton title="Change Password" onPress={navigateToLogin} />
       </View>
     </KeyboardAvoidingView>
   </Layout>
@@ -47,8 +56,7 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  navigateToChangePassword: () =>
-    ownProps.navigation.navigate(Route.ChangePassword)
+  navigateToLogin: () => ownProps.navigation.navigate(Route.Login)
 });
 
-export default connect(null, mapDispatchToProps)(ForgotPasswordScreen);
+export default connect(null, mapDispatchToProps)(ChangePasswordScreen);
