@@ -1,27 +1,11 @@
-import * as React from "react";
+// @flow
 import { ActivityIndicator, AsyncStorage, View } from "react-native";
 import { type NavigationScreenProp } from "react-navigation";
 import { connect } from "react-redux";
 
 import config from "../../../config";
 import { Route as RootRoute } from "../../";
-import Layout from "../../../components/Layout";
-import PageTitle from "../../../components/PageTitle";
-
-class AuthLoadingScreen extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-    props.bootstrap();
-  }
-
-  render() {
-    return (
-      <Layout>
-        <ActivityIndicator />
-      </Layout>
-    );
-  }
-}
+import AuthLoadingScreen from "./AuthLoadingScreen";
 
 // Fetch the token from storage then navigate to our appropriate place
 const bootstrap = navigation => async () => {

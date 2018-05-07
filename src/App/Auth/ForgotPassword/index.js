@@ -1,50 +1,8 @@
 // @flow
-import * as React from "react";
-import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
-import { Header, type NavigationScreenProp } from "react-navigation";
 import { connect } from "react-redux";
 
 import { Route } from "../";
-import Layout from "../../../components/Layout";
-import PageTitle from "../../../components/PageTitle";
-import Link from "../../../components/Link";
-import { PrimaryButton } from "../../../components/Buttons";
-import TextInput from "../../../components/TextInput";
-
-type Props = {
-  navigateToChangePassword: Function
-};
-
-const ForgotPasswordScreen = ({ navigateToChangePassword }: Props) => (
-  <Layout>
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior="padding"
-      keyboardVerticalOffset={Header.HEIGHT}
-      enabled
-    >
-      <View style={styles.main}>
-        <PageTitle>Forgot Password Screen</PageTitle>
-        <TextInput label="Email" placeholder="Please enter your email..." />
-      </View>
-      <View style={styles.controls}>
-        <PrimaryButton title="Send" onPress={navigateToChangePassword} />
-      </View>
-    </KeyboardAvoidingView>
-  </Layout>
-);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%"
-  },
-  main: {
-    flex: 1,
-    width: "100%"
-  },
-  controls: { flex: 0, flexDirection: "row" }
-});
+import ForgotPasswordScreen from "./ForgotPasswordScreen";
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   navigateToChangePassword: () =>
