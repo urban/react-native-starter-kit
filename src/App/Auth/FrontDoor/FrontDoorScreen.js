@@ -1,3 +1,4 @@
+// @flow
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { type NavigationScreenProp } from "react-navigation";
@@ -6,7 +7,12 @@ import Layout, { Theme as LayoutTheme } from "../../../components/Layout";
 import Link from "../../../components/Link";
 import { PrimaryButton, SecondaryButton } from "../../../components/Buttons";
 
-const FrontDoorScreen = ({ navigateToLogin, navigateToRegister }) => (
+type Props = {
+  navigateToLogin: () => void,
+  navigateToRegister: () => void
+};
+
+const FrontDoorScreen = ({ navigateToLogin, navigateToRegister }: Props) => (
   <Layout theme={LayoutTheme.dark}>
     <View style={styles.main} />
     <View style={styles.controls}>

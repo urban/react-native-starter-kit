@@ -1,4 +1,5 @@
 // @flow
+
 type State = {
   +isLoggedIn: boolean
 };

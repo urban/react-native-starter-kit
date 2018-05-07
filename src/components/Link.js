@@ -1,4 +1,7 @@
+// @flow
 import * as React from "react";
 import { Button } from "react-native";
 
-export default props => <Button {...props} />;
+type Props = {};
+
+export default (props: Props) => <Button {...props} />;

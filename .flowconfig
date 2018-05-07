@@ -37,6 +37,13 @@
 <PROJECT_ROOT>/node_modules/reqwest/.*
 <PROJECT_ROOT>/node_modules/metro-bundler/.*
 
+; Ignore for Expo >= 26
+<PROJECT_ROOT>/node_modules/metro/.*
+<PROJECT_ROOT>/node_modules/@expo/.*
+
+[untyped]
+<PROJECT_ROOT>/node_modules/react-native/Libraries/.*
+
 [include]
 
 [libs]

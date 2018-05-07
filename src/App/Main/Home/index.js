@@ -1,3 +1,4 @@
+// @flow
 import * as React from "react";
 import { AsyncStorage } from "react-native";
 import { type NavigationScreenProp } from "react-navigation";

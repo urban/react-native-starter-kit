@@ -1,3 +1,4 @@
+// @flow
 import * as React from "react";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { Header, type NavigationScreenProp } from "react-navigation";
@@ -7,7 +8,12 @@ import TextInput from "../../../components/TextInput";
 import { PrimaryButton } from "../../../components/Buttons";
 import Link from "../../../components/Link";
 
-const LoginScreen = ({ login, navigateToForgotPassword }) => (
+type Props = {
+  login: () => void,
+  navigateToForgotPassword: () => void
+};
+
+const LoginScreen = ({ login, navigateToForgotPassword }: Props) => (
   <Layout>
     <KeyboardAvoidingView
       style={styles.container}

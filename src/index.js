@@ -22,21 +22,8 @@ const App = ({ dispatch, nav: state }: Props) => (
   />
 );
 
-const mapStateToProps = ({ nav }) => ({ nav });
-const mapDispatchToProps = dispatch => ({ dispatch });
-const AppWithNavigationState = connect(mapStateToProps, mapDispatchToProps)(
-  App
-);
-
 const { persistor, store } = configureStore();
 
-// export default () => (
-//   <Provider store={store}>
-//     <PersistGate loading={null} persistor={persistor}>
-//       <AppWithNavigationState />
-//     </PersistGate>
-//   </Provider>
-// );
 export default () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

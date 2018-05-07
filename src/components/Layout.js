@@ -1,3 +1,4 @@
+// @flow
 import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 
@@ -14,7 +15,12 @@ const BarStyle = {
   light: "dark-content"
 };
 
-export default ({ children, theme: bgColor = Theme.light }) => (
+type Props = {
+  children: React.Node,
+  theme?: $Keys<typeof Theme>
+};
+
+export default ({ children, theme: bgColor = Theme.light }: Props) => (
   <ThemeConsumer>
     {theme => {
       const { colors } = themes[theme];

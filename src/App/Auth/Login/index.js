@@ -1,3 +1,4 @@
+// @flow
 import { AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 
