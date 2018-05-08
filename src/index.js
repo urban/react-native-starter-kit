@@ -1,17 +1,20 @@
 // @flow
 import * as React from "react";
 import { connect, Provider } from "react-redux";
+import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 
-import AppNavigator from "./AppNavigator";
-import configureStore from "./store";
+import App from "./App";
+import createStore from "./createStore";
 
-const { persistor, store } = configureStore();
+const store = createStore();
+
+const persistor = persistStore(store);
 
 export default () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <AppNavigator />
+      <App />
     </PersistGate>
   </Provider>
 );

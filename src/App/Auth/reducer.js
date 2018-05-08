@@ -1,49 +1,63 @@
 // @flow
 
 type State = {
+  +isLoading: boolean,
   +isLoggedIn: boolean
 };
 
-export const initialState: State = { isLoggedIn: false };
-
-const Login: "Login" = "Login";
-const Logout: "Logout" = "Logout";
-const Register: "Register" = "Register";
-const RegisterSuccess: "RegisterSuccess" = "RegisterSuccess";
-const NavigateToForgotPassword: "NavigateToForgotPassword" =
-  "NavigateToForgotPassword";
-
-export const actions = {
-  login: () => ({ type: Login }),
-  logout: () => ({ type: Logout }),
-  register: () => ({ type: Register }),
-  registerSuccess: () => ({ type: RegisterSuccess }),
-  navigateToForgotPassword: () => ({ type: NavigateToForgotPassword })
+type Action = {
+  +type: $Values<typeof actionType>
 };
 
-export type Action = {
-  +type:
-    | typeof Login
-    | typeof Logout
-    | typeof Register
-    | typeof RegisterSuccess
-    | typeof NavigateToForgotPassword
+export const initialState: State = {
+  isLoading: false,
+  isLoggedIn: false
 };
 
-const reducer = (state: State = initialState, action: Action): State => {
+export const key = "auth";
+
+const createActionName = name => `app/${key}/${name}`;
+
+const t = {
+  Login: createActionName("Login"),
+  LoginSuccess: createActionName("LoginSuccess"),
+  LoginError: createActionName("LoginError"),
+  Logout: createActionName("Logout"),
+  Register: createActionName("Register"),
+  RegisterSuccess: createActionName("RegisterSuccess"),
+  NavigateToForgotPassword: createActionName("NavigateToForgotPassword")
+};
+
+export const actionType = t;
+
+export const action = {
+  login: () => ({ type: t.Login }),
+  loginSuccess: () => ({ type: t.LoginSuccess }),
+  loginError: () => ({ type: t.LoginError }),
+  logout: () => ({ type: t.Logout }),
+  register: () => ({ type: t.Register }),
+  registerSuccess: () => ({ ttype: t.RegisterSuccess }),
+  navigateToForgotPassword: () => ({ type: t.NavigateToForgotPassword })
+};
+
+export default (state: State = initialState, action: Action): State => {
   switch (action.type) {
-    case Login:
-      return { ...state, isLoggedIn: true };
+    case t.Login:
+      return { ...state, isLoading: true };
 
-    case Logout:
+    case t.LoginSuccess:
+      return { ...state, isLoading: false, isLoggedIn: true };
+
+    case t.LoginError:
+      return { ...state, isLoading: false, isLoggedIn: false };
+
+    case t.Logout:
       return { ...state, isLoggedIn: false };
 
-    case RegisterSuccess:
+    case t.RegisterSuccess:
       return { ...state, isLoggedIn: true };
 
     default:
       return state;
   }
 };
-
-export default reducer;

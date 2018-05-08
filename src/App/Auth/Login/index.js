@@ -2,7 +2,7 @@
 import { AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 
-import { actions, type Action } from "../reducer";
+import { action } from "../reducer";
 import config from "../../../config";
 import { Route as RootRoute } from "../../";
 import { Route as AuthRoute } from "../";
@@ -13,7 +13,7 @@ const logInAsync = navigation => async () => {
   navigation.navigate(RootRoute.Main);
 };
 
-const { navigateToForgotPassword } = actions;
+const { navigateToForgotPassword } = action;
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   login: logInAsync(ownProps.navigation),
