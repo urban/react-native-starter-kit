@@ -1,26 +1,11 @@
 // @flow
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { type NavigationAction, type NavigationState } from "react-navigation";
-import {
-  createReduxBoundAddListener,
-  createReactNavigationReduxMiddleware
-} from "react-navigation-redux-helpers";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import { name, version } from "../package.json";
-import AppNavigator, { Route } from "./App";
-
-import reducer, { Reducers } from "./reducers";
-
-// Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
-const navKey = "root";
-const middleware = createReactNavigationReduxMiddleware(
-  navKey,
-  state => state[Reducers.navigation]
-);
-
-export const addListener = () => createReduxBoundAddListener(navKey);
+import reducer from "./reducers";
+import { middleware } from "./utils/redux";
 
 export default () => {
   /* eslint-disable no-underscore-dangle */

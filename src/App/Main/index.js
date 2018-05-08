@@ -1,5 +1,5 @@
 // @flow
-import { StackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 
 import Home from "./Home";
 
@@ -7,7 +7,7 @@ export const Route = {
   Home: "Home"
 };
 
-const MainNavigator = StackNavigator({
+const MainNavigator = createStackNavigator({
   [Route.Home]: {
     screen: Home
   }

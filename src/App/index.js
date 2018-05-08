@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { SwitchNavigator } from "react-navigation";
+import { createSwitchNavigator } from "react-navigation";
 
 import AuthStack, { AuthLoading } from "./Auth";
 import MainStack from "./Main";
@@ -11,7 +11,7 @@ export const Route = {
   Auth: "Auth"
 };
 
-const AppNavigator = SwitchNavigator(
+export default createSwitchNavigator(
   {
     [Route.Loading]: AuthLoading,
     [Route.Main]: MainStack,
@@ -21,5 +21,3 @@ const AppNavigator = SwitchNavigator(
     initialRouteName: Route.Loading
   }
 );
-
-export default AppNavigator;

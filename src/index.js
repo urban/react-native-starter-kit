@@ -1,26 +1,10 @@
 // @flow
 import * as React from "react";
-import { addNavigationHelpers, SwitchNavigator } from "react-navigation";
 import { connect, Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
-import AppNavigator from "./App";
-import configureStore, { addListener } from "./store";
-
-type Props = {
-  dispatch: Function,
-  nav: any
-};
-
-const App = ({ dispatch, nav: state }: Props) => (
-  <AppNavigator
-    navigation={addNavigationHelpers({
-      state,
-      dispatch,
-      addListener
-    })}
-  />
-);
+import AppNavigator from "./AppNavigator";
+import configureStore from "./store";
 
 const { persistor, store } = configureStore();
 

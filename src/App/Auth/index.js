@@ -1,5 +1,5 @@
 // @flow
-import { StackNavigator } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 
 import ChangePassword from "./ChangePassword";
 import FrontDoor from "./FrontDoor";
@@ -19,7 +19,7 @@ export const Route = {
   AuthLoading: "Connecting"
 };
 
-const AuthNavigator = StackNavigator(
+export default createStackNavigator(
   {
     [Route.ChangePassword]: {
       screen: ChangePassword
@@ -44,5 +44,3 @@ const AuthNavigator = StackNavigator(
     initialRouteName: Route.FrontDoor
   }
 );
-
-export default AuthNavigator;
