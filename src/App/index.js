@@ -8,7 +8,7 @@ import reducer, { key } from "./reducer";
 import AuthStack, { AuthLoading } from "./Auth";
 import MainStack from "./Main";
 
-registry.register(key, reducer);
+registry.registerReducers({ [key]: reducer });
 
 export const Route = {
   Loading: "Loading",

@@ -16,7 +16,7 @@ const logInAsync = navigation => async () => {
 const { navigateToForgotPassword } = action;
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  login: logInAsync(ownProps.navigation),
+  login: () => dispatch(action.login()),
   navigateToForgotPassword: () =>
     ownProps.navigation.navigate(AuthRoute.ForgotPassword)
 });

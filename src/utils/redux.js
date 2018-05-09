@@ -1,14 +1,23 @@
 // @flow
-import { persistReducer } from "redux-persist";
+import {
+  applyMiddleware,
+  combineReducers,
+  compose,
+  createStore,
+  type Store
+} from "redux";
 import storage from "redux-persist/lib/storage";
 import {
   createReduxBoundAddListener,
   createReactNavigationReduxMiddleware
 } from "react-navigation-redux-helpers";
+import { combineEpics, createEpicMiddleware, ofType } from "redux-observable";
+import { BehaviorSubject, Observable } from "rxjs";
+import { mergeMap, tap } from "rxjs/operators";
+import { persistReducer as _persistReducer } from "redux-persist";
+import { type Reducer } from "redux";
 
 import { key } from "../App/reducer";
-// import { BehaviorSubject } from "rxjs/BehaviorSubject";
-// import { createEpicMiddleware } from "redux-observable";
 
 // Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
 const navKey = "root";
@@ -18,42 +27,77 @@ const navigationMiddleware = createReactNavigationReduxMiddleware(
   state => state[key]
 );
 
-// const epic$ = new BehaviorSubject();
-
-export const middleware = [navigationMiddleware];
-
 export const addListener = createReduxBoundAddListener(navKey);
 
 // TODO: Add to Environment
-const config = {
+export const persistConfig = {
   key: "root",
   storage
 };
 
+export const persistReducer = (reducer: Reducer<*, *>) =>
+  _persistReducer(persistConfig, reducer);
+
+const initialReducers = {};
+const initialEpic = action$ =>
+  action$.pipe(ofType("FIZZBUZZ"), mergeMap(() => Observable.empty()));
+
 class Registry {
   _emitChange: ?Function;
   _reducers: Object;
+  _epic$: any;
+  _middleware: Array<Function> = [navigationMiddleware];
+  _store: ?Store<*, *>;
 
   constructor() {
     this._emitChange = null;
-    this._reducers = {};
+    this._reducers = initialReducers;
+    this._epic$ = new BehaviorSubject(initialEpic);
+    const rootEpic = (action$, store) =>
+      this._epic$.pipe(mergeMap(epic => epic(action$, store)));
+    this._middleware.push(createEpicMiddleware(rootEpic));
   }
 
-  getReducers() {
-    return { ...this._reducers };
-  }
-
-  register(name: string, reducer: Function, persist: ?boolean = false) {
+  registerReducers(reducers: { [string]: Function }) {
     this._reducers = {
       ...this._reducers,
-      [name]: persist ? persistReducer(config, reducer) : reducer
+      ...reducers
     };
-    // $FlowFixMe
-    this._emitChange && this._emitChange(this.getReducers());
+
+    if (this._store) {
+      this._store.replaceReducer(combineReducers(this._reducers));
+    }
   }
 
-  setChangeListener(listener: Function) {
-    this._emitChange = listener;
+  registerEpic(epic: ?any) {
+    this._epic$.next(epic);
+  }
+
+  createStore() {
+    if (this._store) {
+      return this._store;
+    }
+
+    /* eslint-disable no-underscore-dangle */
+    const composeEnhancers =
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+    this._store = createStore(
+      combineReducers(this._reducers),
+      composeEnhancers(applyMiddleware(...this._middleware))
+    );
+    /* eslint-enable */
+    // $FlowFixMe
+    if (module.hot) {
+      // $FlowFixMe
+      module.hot.accept(() => {
+        if (this._store) {
+          this._store.replaceReducer(combineReducers(this._reducers));
+        }
+      });
+    }
+
+    return this._store;
   }
 }
 
