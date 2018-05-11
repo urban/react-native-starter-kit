@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { action } from "../reducer";
 import { Route as RootRoute } from "@app";
-import { Route as AuthRoute } from "../";
+import AuthRoute from "../router";
 import LoginScreen from "./LoginScreen";
 
 const { navigateToForgotPassword } = action;

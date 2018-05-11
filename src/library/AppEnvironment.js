@@ -1,6 +1,9 @@
 // @flow
 import { registry } from "./redux";
-import Environment, { type EnvironmentT } from "./Environment";
+import Environment, {
+  type EnvironmentT,
+  type Props as EnvironmentProps
+} from "./Environment";
 
 const last = xs => xs[xs.length - 1];
 
@@ -15,7 +18,8 @@ export default class AppEnvironment {
     return last(AppEnvironment._stack);
   }
 
-  static updateEnvironment(env: EnvironmentT) {
+  static updateEnvironment(props: EnvironmentProps) {
+    const env = Environment(props);
     // AppEnvironment.saveEnvironment(env);
     AppEnvironment._stack.push(env);
     AppEnvironment._registry.registerReducers(env.reducers);

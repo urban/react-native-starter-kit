@@ -4,7 +4,7 @@ import { type NavigationScreenProp } from "react-navigation";
 import { connect } from "react-redux";
 
 import config from "../../../config";
-import { Route as RootRoute } from "../../";
+import { Route as RootRoute } from "@app";
 import AuthLoadingScreen from "./AuthLoadingScreen";
 
 // Fetch the token from storage then navigate to our appropriate place

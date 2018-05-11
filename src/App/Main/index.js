@@ -1,16 +1,12 @@
 // @flow
 import { createStackNavigator } from "react-navigation";
 
-import Home from "./Home";
+import { AppEnvironment } from "@library";
+import createReducers from "./reducer";
+import MainNavigator from "./MainNavigator";
 
-export const Route = {
-  Home: "Home"
-};
-
-const MainNavigator = createStackNavigator({
-  [Route.Home]: {
-    screen: Home
-  }
+AppEnvironment.updateEnvironment({
+  reducers: createReducers()
 });
 
 export default MainNavigator;

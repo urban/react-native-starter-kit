@@ -2,8 +2,10 @@
 import { type Reducer } from "redux";
 import { NavigationActions } from "react-navigation";
 
-import { App, Route } from "./";
+import { App, Route as RootRoute } from "./";
 import { actionType as loginActionType } from "./Auth/reducer";
+import MainRoute from "./Main/router";
+import { actionType as mainActionType } from "./Main/reducer";
 
 export const key = "app/navigation";
 
@@ -16,7 +18,15 @@ export const reducer: Reducer<*, *> = (state: *, action: *) => {
     case loginActionType.LoginSuccess:
       nextState = App.router.getStateForAction(
         // $FlowFixMe
-        App.router.getActionForPathAndParams(Route.Main),
+        App.router.getActionForPathAndParams(RootRoute.Main),
+        state
+      );
+      break;
+
+    case mainActionType.PermissionsGranted:
+      nextState = App.router.getStateForAction(
+        // $FlowFixMe
+        App.router.getActionForPathAndParams(MainRoute.Home),
         state
       );
       break;

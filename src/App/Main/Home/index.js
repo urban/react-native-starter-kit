@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import config from "../../../config";
 import { Route as RootRoute } from "@app";
-import { Route } from "../";
+import Route from "../router";
 import { Layout, Link, PageTitle } from "@components";
 
 const HomeScreen = ({ logout }) => (

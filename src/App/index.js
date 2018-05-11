@@ -3,17 +3,15 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { createSwitchNavigator } from "react-navigation";
 
-import { AppEnvironment, Environment } from "@library";
+import { AppEnvironment } from "@library";
 import { addListener, registry } from "@library/redux";
 import createReducers, { key } from "./reducer";
 import AuthStack, { AuthLoading } from "./Auth";
 import MainStack from "./Main";
 
-const env = Environment({
+AppEnvironment.updateEnvironment({
   reducers: createReducers()
 });
-
-AppEnvironment.updateEnvironment(env);
 
 export const Route = {
   Loading: "Loading",

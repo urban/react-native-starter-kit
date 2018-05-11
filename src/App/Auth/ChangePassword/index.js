@@ -1,7 +1,7 @@
 // @flow
 import { connect } from "react-redux";
 
-import { Route } from "../";
+import Route from "../router";
 import ChangePasswordScreen from "./ChangePasswordScreen";
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

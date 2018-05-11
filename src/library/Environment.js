@@ -12,7 +12,7 @@ export type EnvironmentT = {
   +reducers: Reducers
 };
 
-type Props = {
+export type Props = {
   apiService?: ServiceT,
   epic?: *,
   reducers?: Reducers

@@ -1,7 +1,7 @@
 // @flow
 import { connect } from "react-redux";
 
-import { Route } from "../";
+import Route from "../router";
 import RegisterScreen from "./RegisterScreen";
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
