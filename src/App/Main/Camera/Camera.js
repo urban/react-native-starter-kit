@@ -30,7 +30,7 @@ class CameraScreen extends React.Component<Props, *> {
     zoom: 0,
     autoFocus: "on",
     depth: 0,
-    type: Camera.Constants.Type.Front,
+    type: "front",
     whiteBalance: "auto",
     ratio: "16:9",
     ratios: [],
@@ -45,10 +45,7 @@ class CameraScreen extends React.Component<Props, *> {
 
   toggleFacing = () => {
     this.setState(({ type }) => ({
-      type:
-        type === Camera.Constants.Type.Back
-          ? Camera.Constants.Type.Front
-          : Camera.Constants.Type.Back
+      type: type === "back" ? "front" : "back"
     }));
   };
 

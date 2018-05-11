@@ -29,6 +29,10 @@ export const reducer: Reducer<*, *> = (state: *, action: *) => {
         App.router.getActionForPathAndParams(MainRoute.Home),
         state
       );
+      // replace
+      const { index } = nextState;
+      nextState.routes.splice(index - 1, 1);
+      nextState.index--;
       break;
 
     default:
