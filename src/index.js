@@ -5,9 +5,9 @@ import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 
 import App from "./App";
-import { registry } from "./utils/redux";
+import AppEnvironment from "./App/AppEnvironment";
 
-const store = registry.createStore();
+const store = AppEnvironment.store();
 const persistor = persistStore(store);
 
 export default () => (

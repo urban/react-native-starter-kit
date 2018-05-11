@@ -1,16 +1,21 @@
 // @flow
-import { type NavigationState, type NavigationAction } from "react-navigation";
+import { type Reducer } from "redux";
+import { NavigationActions } from "react-navigation";
 
 import { App, Route } from "./";
 import { actionType as loginActionType } from "./Auth/reducer";
 
 export const key = "app/navigation";
 
-export default (state: NavigationState, action: NavigationAction) => {
+// const initialAction = { type: NavigationActions.INIT };
+// const initialState = App.router.getStateForAction(initialAction);
+
+export const reducer: Reducer<*, *> = (state: *, action: *) => {
   let nextState;
   switch (action.type) {
     case loginActionType.LoginSuccess:
       nextState = App.router.getStateForAction(
+        // $FlowFixMe
         App.router.getActionForPathAndParams(Route.Main),
         state
       );
@@ -23,3 +28,5 @@ export default (state: NavigationState, action: NavigationAction) => {
 
   return nextState || state;
 };
+
+export default () => ({ [key]: reducer });

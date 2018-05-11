@@ -1,5 +1,8 @@
 // @flow
 
+import { type Reducer } from "redux";
+import { persistedReducer } from "../../utils/redux";
+
 type State = {
   +isLoading: boolean,
   +isLoggedIn: boolean
@@ -40,7 +43,10 @@ export const action = {
   navigateToForgotPassword: () => ({ type: t.NavigateToForgotPassword })
 };
 
-export default (state: State = initialState, action: Action): State => {
+export const reducer: Reducer<State, Action> = (
+  state: State = initialState,
+  action: Action
+): State => {
   switch (action.type) {
     case t.Login:
       return { ...state, isLoading: true };
@@ -61,3 +67,5 @@ export default (state: State = initialState, action: Action): State => {
       return state;
   }
 };
+
+export default () => ({ [key]: persistedReducer(reducer) });

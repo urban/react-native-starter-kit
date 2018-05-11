@@ -3,7 +3,7 @@ import { ofType } from "redux-observable";
 import { delay, filter, mapTo, tap } from "rxjs/operators";
 import { actionType as t, action as a } from "./reducer";
 
-const authEpic = action$ =>
+const authEpic = (action$: *) =>
   action$.pipe(
     ofType(t.Login),
     delay(1000),

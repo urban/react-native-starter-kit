@@ -1,8 +1,10 @@
 // @flow
 import { createStackNavigator } from "react-navigation";
 
-import { persistReducer, registry } from "../../utils/redux";
-import reducer, { key } from "./reducer";
+import AppEnvironment from "../AppEnvironment";
+import Environment from "../Environment";
+import { registry } from "../../utils/redux";
+import createReducers from "./reducer";
 import epic from "./epic";
 import ChangePassword from "./ChangePassword";
 import FrontDoor from "./FrontDoor";
@@ -11,8 +13,12 @@ import Login from "./Login";
 import Register from "./Register";
 import AuthLoading from "./AuthLoading";
 
-registry.registerReducers({ [key]: persistReducer(reducer) });
-registry.registerEpic(epic);
+const env = Environment({
+  epic,
+  reducers: createReducers()
+});
+
+AppEnvironment.updateEnvironment(env);
 
 export { default as AuthLoading } from "./AuthLoading";
 

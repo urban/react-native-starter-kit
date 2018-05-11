@@ -14,7 +14,7 @@ import {
 import { combineEpics, createEpicMiddleware, ofType } from "redux-observable";
 import { BehaviorSubject, Observable } from "rxjs";
 import { mergeMap, tap } from "rxjs/operators";
-import { persistReducer as _persistReducer } from "redux-persist";
+import { persistReducer } from "redux-persist";
 import { type Reducer } from "redux";
 
 import { key } from "../App/reducer";
@@ -35,8 +35,9 @@ export const persistConfig = {
   storage
 };
 
-export const persistReducer = (reducer: Reducer<*, *>) =>
-  _persistReducer(persistConfig, reducer);
+export const persistedReducer = (reducer: Reducer<*, *>): Reducer<*, *> =>
+  // $FlowFixMe
+  persistReducer(persistConfig, reducer);
 
 const initialReducers = {};
 const initialEpic = action$ =>
