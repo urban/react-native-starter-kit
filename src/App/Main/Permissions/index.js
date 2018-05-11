@@ -1,6 +1,4 @@
 // @flow
-import * as React from "react";
-import { Button, View, Text } from "react-native";
 import { Permissions } from "expo";
 import { connect } from "react-redux";
 
@@ -9,9 +7,12 @@ import { action } from "../reducer";
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getPermissions: async () => {
-    debugger;
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    status === "granted"
+    const permissions = await Promise.all([
+      Permissions.askAsync(Permissions.CAMERA),
+      Permissions.askAsync(Permissions.AUDIO_RECORDING)
+    ]);
+    const isGranted = permissions.every(({ status }) => status === "granted");
+    isGranted
       ? dispatch(action.permissionsGranted())
       : dispatch(action.permissionsDenied());
   }

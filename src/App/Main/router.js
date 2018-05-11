@@ -1,6 +1,9 @@
 // @flow
 
 export default {
+  Camera: "Camera",
+  Gallery: "Gallery",
   Home: "Home",
-  Permissions: "Permissions"
+  Permissions: "Permissions",
+  VideoPlayer: "VideoPlayer"
 };

@@ -5,16 +5,9 @@ import { type NavigationScreenProp } from "react-navigation";
 import { connect } from "react-redux";
 
 import config from "../../../config";
-import { Route as RootRoute } from "@app";
+import { App, Route as RootRoute } from "@app";
 import Route from "../router";
-import { Layout, Link, PageTitle } from "@components";
-
-const HomeScreen = ({ logout }) => (
-  <Layout>
-    <PageTitle>Home Screen</PageTitle>
-    <Link title="Logout" onPress={logout} />
-  </Layout>
-);
+import HomeScreen from "./Home";
 
 const signOutAsync = navigation => async () => {
   try {
@@ -26,7 +19,11 @@ const signOutAsync = navigation => async () => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  logout: signOutAsync(ownProps.navigation)
+  logout: signOutAsync(ownProps.navigation),
+  navigateToCamera: () =>
+    dispatch(App.router.getActionForPathAndParams(Route.Camera)),
+  navigateToGallery: () =>
+    dispatch(App.router.getActionForPathAndParams(Route.Gallery))
 });
 
 export default connect(null, mapDispatchToProps)(HomeScreen);
