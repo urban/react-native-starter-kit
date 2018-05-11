@@ -5,11 +5,9 @@ import { type NavigationScreenProp } from "react-navigation";
 import { connect } from "react-redux";
 
 import config from "../../../config";
-import { Route as RootRoute } from "../../";
+import { Route as RootRoute } from "@app";
 import { Route } from "../";
-import Layout from "../../../components/Layout";
-import PageTitle from "../../../components/PageTitle";
-import Link from "../../../components/Link";
+import { Layout, Link, PageTitle } from "@components";
 
 const HomeScreen = ({ logout }) => (
   <Layout>

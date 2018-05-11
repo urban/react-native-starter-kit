@@ -1,6 +1,7 @@
 // @flow
 import { ofType } from "redux-observable";
 import { delay, filter, mapTo, tap } from "rxjs/operators";
+
 import { actionType as t, action as a } from "./reducer";
 
 const authEpic = (action$: *) =>

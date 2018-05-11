@@ -3,9 +3,8 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { type NavigationScreenProp } from "react-navigation";
 
-import Layout from "../../../components/Layout";
-import Link from "../../../components/Link";
-import { PrimaryButton } from "../../../components/Buttons";
+import { Layout, Link } from "@components";
+import { PrimaryButton } from "@components/Buttons";
 
 type Props = {
   navigateToFrontDoor: Function,

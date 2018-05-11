@@ -3,9 +3,9 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { type NavigationScreenProp } from "react-navigation";
 
-import Layout, { Theme as LayoutTheme } from "../../../components/Layout";
-import Link from "../../../components/Link";
-import { PrimaryButton, SecondaryButton } from "../../../components/Buttons";
+import Layout, { Theme as LayoutTheme } from "@components/Layout";
+import Link from "@components/Link";
+import { PrimaryButton, SecondaryButton } from "@components/Buttons";
 
 type Props = {
   navigateToLogin: () => void,

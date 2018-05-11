@@ -1,9 +1,7 @@
 // @flow
 import { createStackNavigator } from "react-navigation";
 
-import AppEnvironment from "../AppEnvironment";
-import Environment from "../Environment";
-import { registry } from "../../utils/redux";
+import { AppEnvironment, Environment } from "@library";
 import createReducers from "./reducer";
 import epic from "./epic";
 import ChangePassword from "./ChangePassword";

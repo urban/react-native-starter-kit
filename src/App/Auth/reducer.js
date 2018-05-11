@@ -1,7 +1,7 @@
 // @flow
-
 import { type Reducer } from "redux";
-import { persistedReducer } from "../../utils/redux";
+
+import { persistedReducer } from "@library/redux";
 
 type State = {
   +isLoading: boolean,

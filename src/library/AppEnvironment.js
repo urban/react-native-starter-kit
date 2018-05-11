@@ -1,5 +1,5 @@
 // @flow
-import { registry } from "../utils/redux";
+import { registry } from "./redux";
 import Environment, { type EnvironmentT } from "./Environment";
 
 const last = xs => xs[xs.length - 1];

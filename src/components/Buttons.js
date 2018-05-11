@@ -2,8 +2,8 @@
 import * as React from "react";
 import { Button } from "react-native-elements";
 
-import themes from "../styles/themes";
-import { ThemeConsumer } from "../utils/ThemeContext";
+import { themes } from "@styles";
+import { ThemeConsumer } from "./ThemeContext";
 
 type Props = {
   title: string,

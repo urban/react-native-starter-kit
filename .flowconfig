@@ -56,6 +56,8 @@ emoji=true
 
 module.system=haste
 
+esproposal.export_star_as=enable
+
 module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json

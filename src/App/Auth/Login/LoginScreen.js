@@ -3,10 +3,8 @@ import * as React from "react";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { Header, type NavigationScreenProp } from "react-navigation";
 
-import Layout from "../../../components/Layout";
-import TextInput from "../../../components/TextInput";
-import { PrimaryButton } from "../../../components/Buttons";
-import Link from "../../../components/Link";
+import { Layout, Link, TextInput } from "@components";
+import { PrimaryButton } from "@components/Buttons";
 
 type Props = {
   login: () => void,

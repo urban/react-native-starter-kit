@@ -3,15 +3,9 @@ import { AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 
 import { action } from "../reducer";
-import config from "../../../config";
-import { Route as RootRoute } from "../../";
+import { Route as RootRoute } from "@app";
 import { Route as AuthRoute } from "../";
 import LoginScreen from "./LoginScreen";
-
-const logInAsync = navigation => async () => {
-  await AsyncStorage.setItem(config.userToken, "abc");
-  navigation.navigate(RootRoute.Main);
-};
 
 const { navigateToForgotPassword } = action;
 

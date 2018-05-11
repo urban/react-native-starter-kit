@@ -3,9 +3,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { createSwitchNavigator } from "react-navigation";
 
-import Environment from "./Environment";
-import AppEnvironment from "./AppEnvironment";
-import { addListener, registry } from "../utils/redux";
+import { AppEnvironment, Environment } from "@library";
+import { addListener, registry } from "@library/redux";
 import createReducers, { key } from "./reducer";
 import AuthStack, { AuthLoading } from "./Auth";
 import MainStack from "./Main";

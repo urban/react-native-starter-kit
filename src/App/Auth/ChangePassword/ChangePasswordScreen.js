@@ -3,10 +3,8 @@ import * as React from "react";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { Header, type NavigationScreenProp } from "react-navigation";
 
-import Layout from "../../../components/Layout";
-import Link from "../../../components/Link";
-import { PrimaryButton } from "../../../components/Buttons";
-import TextInput from "../../../components/TextInput";
+import { Layout, Link, TextInput } from "@components";
+import { PrimaryButton } from "@components/Buttons";
 
 type Props = {
   navigateToLogin: Function

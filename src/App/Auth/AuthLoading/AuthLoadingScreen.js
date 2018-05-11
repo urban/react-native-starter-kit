@@ -3,7 +3,7 @@ import * as React from "react";
 import { ActivityIndicator, View } from "react-native";
 import { type NavigationScreenProp } from "react-navigation";
 
-import Layout from "../../../components/Layout";
+import { Layout } from "@components/";
 
 type Props = {
   bootstrap: Function

@@ -2,8 +2,8 @@
 import * as React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 
-import themes from "../styles/themes";
-import { ThemeConsumer } from "../utils/ThemeContext";
+import { themes } from "@styles";
+import { ThemeConsumer } from "./ThemeContext";
 
 export const Theme = {
   dark: "dark",

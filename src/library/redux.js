@@ -17,7 +17,8 @@ import { mergeMap, tap } from "rxjs/operators";
 import { persistReducer } from "redux-persist";
 import { type Reducer } from "redux";
 
-import { key } from "../App/reducer";
+// TODO: fix me!!!!
+import { key } from "@app/reducer";
 
 // Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
 const navKey = "root";
