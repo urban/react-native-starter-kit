@@ -5,6 +5,7 @@ type State = {
   +permissions: {
     +camera: boolean
   },
+  +selectedRecording: ?string,
   +recordings: {
     [string]: string
   }
@@ -18,6 +19,7 @@ export const initialState: State = {
   permissions: {
     camera: false
   },
+  selectedRecording: null,
   recordings: {}
 };
 
@@ -35,13 +37,17 @@ const t = {
 export const actionType = t;
 
 export const action = {
-  permissionsGranted: () => ({ type: t.PermissionsGranted }),
-  permissionsDenied: () => ({ type: t.PermissionsDenied }),
+  permissionsGranted: () => ({
+    type: t.PermissionsGranted
+  }),
+  permissionsDenied: () => ({
+    type: t.PermissionsDenied
+  }),
   newRecording: (createdAt: string, uri: string) => ({
     type: t.NewRecording,
     payload: { [createdAt]: uri }
   }),
-  navigateToRecording: recordingKey => ({
+  navigateToRecording: (recordingKey: string) => ({
     type: t.NavigateToRecording,
     payload: recordingKey
   })
@@ -62,6 +68,12 @@ export const reducer: Reducer<State, Action> = (
       return {
         ...state,
         recordings: { ...state.recordings, ...action.payload }
+      };
+
+    case t.NavigateToRecording:
+      return {
+        ...state,
+        selectedRecording: action.payload
       };
 
     default:

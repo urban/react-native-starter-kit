@@ -23,16 +23,23 @@ export const reducer: Reducer<*, *> = (state: *, action: *) => {
       );
       break;
 
+    // TODO: need to handle denial case
+    case mainActionType.PermissionsDenied:
     case mainActionType.PermissionsGranted:
+      // TODO: need to replace current screen with home
       nextState = App.router.getStateForAction(
         // $FlowFixMe
         App.router.getActionForPathAndParams(MainRoute.Home),
         state
       );
-      // replace
-      const { index } = nextState;
-      nextState.routes.splice(index - 1, 1);
-      nextState.index--;
+      break;
+
+    case mainActionType.NavigateToRecording:
+      nextState = App.router.getStateForAction(
+        // $FlowFixMe
+        App.router.getActionForPathAndParams(MainRoute.VideoPlayer),
+        state
+      );
       break;
 
     default:

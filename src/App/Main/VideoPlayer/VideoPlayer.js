@@ -2,10 +2,18 @@
 import * as React from "react";
 import { View } from "react-native";
 import { Constants, FileSystem, Video } from "expo";
-import { FlipButton as Button } from "@components/Button";
+import { FlipButton as Button } from "@components/Buttons";
 
-export default class VideoScreen extends React.Component {
-  state = {
+type Props = {
+  uri: string
+};
+
+type State = {
+  paused: boolean
+};
+
+export default class VideoScreen extends React.Component<Props, State> {
+  state: State = {
     paused: false
   };
 
@@ -18,7 +26,7 @@ export default class VideoScreen extends React.Component {
   };
 
   render() {
-    const { params } = this.props.navigation.state;
+    const { uri } = this.props;
     const { paused } = this.state;
     return (
       <View
@@ -32,17 +40,16 @@ export default class VideoScreen extends React.Component {
         }}
       >
         <Video
-          source={{
-            uri: `${FileSystem.documentDirectory}videos/${params.fileUri}`
-          }}
+          source={{ uri }}
           rate={1.0}
           volume={1.0}
           isMuted={false}
           resizeMode="cover"
           shouldPlay={paused}
-          isLooping
+          useNativeControls
           style={{ flex: 1, width: "100%", height: "auto" }}
         />
+        {/*
         <View
           style={{
             flex: 0.5,
@@ -58,6 +65,7 @@ export default class VideoScreen extends React.Component {
           />
           <Button icon="stop" onPress={this.handleStopVideo} />
         </View>
+        */}
       </View>
     );
   }

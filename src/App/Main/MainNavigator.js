@@ -6,7 +6,7 @@ import CameraScreen from "./Camera";
 import GalleryScreen from "./Gallery";
 import HomeScreen from "./Home";
 import PermissionsScreen from "./Permissions";
-// import VideoPlayerScreen from "./VideoPlayer";
+import VideoPlayerScreen from "./VideoPlayer";
 
 const MainNavigator = createStackNavigator(
   {
@@ -21,10 +21,10 @@ const MainNavigator = createStackNavigator(
     },
     [Route.Permissions]: {
       screen: PermissionsScreen
-    } //,
-    // [Route.VideoPlayer]: {
-    //   screen: VideoPlayerScreen
-    // }
+    },
+    [Route.VideoPlayer]: {
+      screen: VideoPlayerScreen
+    }
   },
   {
     initialRouteName: Route.Permissions
